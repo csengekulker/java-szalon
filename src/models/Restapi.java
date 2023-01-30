@@ -8,8 +8,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Restapi {
@@ -22,7 +24,16 @@ public class Restapi {
 
     public ArrayList<Vehicle> getVehicles() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        return null;
+        Gson gson = gsonBuilder.create();
+        String text = getVehiclesAsString();
+        System.out.println("ITT" +text);
+        Vehicle[] vehicleArray = gson.fromJson(text, Vehicle[].class);
+
+        ArrayList<Vehicle> vehicles = new ArrayList<>(
+            Arrays.asList(vehicleArray)
+        );
+
+        return vehicles;
     }
 
     public String getVehiclesAsString() {

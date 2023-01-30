@@ -1,6 +1,9 @@
 package views;
 
+import java.util.ArrayList;
+
 import models.Restapi;
+import models.Vehicle;
 
 // no view, only logs
 public class MainView {
@@ -12,6 +15,12 @@ public class MainView {
     }
 
     public void init() {
-        this.service.getVehicles();
+        ArrayList<Vehicle> vehicles = this.service.getVehicles();
+        for (Vehicle v : vehicles)
+        System.out.printf("%10s | %12s | %6.2f\n", 
+            v.getLicensePlate(),
+            v.getPrice(),
+            v.getBrand()
+        );
     }
 }
